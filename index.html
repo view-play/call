@@ -1,0 +1,331 @@
+<!doctype html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<title>景德镇市大数据资源中心</title>
+		<script type="text/javascript" src="js/jquery.js"></script>
+		<script type="text/javascript" src="js/echarts.min.js"></script>
+		<script type="text/javascript" src="js/china.js"></script>
+		<script type="text/javascript" src="js/map.js"></script>
+		<script type="text/javascript" src="js/js.js"></script>
+		<script type="text/javascript" src="js/Bubble.js"></script>
+		<script type="text/javascript" src="js/scroll_table.js"></script>
+		<link rel="stylesheet" href="css/style.css">
+	</head>
+	<style>
+		.menu li:first-child::before, .menu li:first-child a::before,.menu li:first-child::after,.menu li:first-child a::after{
+		  border-color: #dad72e;
+		  opacity: 1;
+	}
+
+</style>
+	<body>
+		<div class="head clearfix">
+
+
+			<h1 class="pulll_left">景德镇市大数据资源中心</h1>
+			<div class="menu menu2 pulll_left">
+				<ul>
+					<li><a style="color: #f4e925;" href="index.html">人口库</a></li>
+					<li><a href="index2.html">法人库</a></li>
+
+				</ul>
+			</div>
+
+			<div class="time" id="showTime">2018/6/12 17:00:12</div>
+			<script>
+				var t = null;
+				t = setTimeout(time, 1000); //開始运行
+				function time() {
+					clearTimeout(t); //清除定时器
+					dt = new Date();
+					var y = dt.getFullYear();
+					var mt = dt.getMonth() + 1;
+					var day = dt.getDate();
+					var h = dt.getHours(); //获取时
+					var m = dt.getMinutes(); //获取分
+					var s = dt.getSeconds(); //获取秒
+					document.getElementById("showTime").innerHTML = y + "/" + mt + "/" + day + " " + h + ":" + m + ":" + s + "";
+					t = setTimeout(time, 1000); //设定定时器，循环运行     
+				}
+			</script>
+		</div>
+		<div class="mainbox">
+
+			<ul class="clearfix nav1">
+				<li style="width: 22%">
+					<div class="box">
+						<div class="tit">数据来源情况</div>
+
+						<div class="boxnav" style="height: 250px;">
+							<div class="yqlist">
+								<ul class="clearfix">
+									<li>
+										<div class="yq" id="yq">26</div>
+										<span>来源部门数</span>
+									</li>
+									<li>
+										<div class="yq">567</div>
+										<span>表数量</span>
+									</li>
+									<li>
+										<div class="yq">56345</div>
+										<span>字段数量</span>
+									</li>
+									<li>
+										<div class="yq">7216831</div>
+										<span>数据数量</span>
+									</li>
+								</ul>
+							</div>
+						</div>
+					</div>
+					<div class="box">
+						<div class="tit">近一年用电情况</div>
+						<div class="boxnav" id="echart3" style="height: 200px;">
+
+						</div>
+
+						<div class="" id="" style="display: none;">
+							<div style="float: left; width: 50%; height: 170px" id="fb01"></div>
+							<div style="float: left; width: 50%; height: 170px" id="fb02"></div>
+
+						</div>
+						<div class="leidanav leidanav2" style="display: none;">
+							<ul class="clearfix">
+								<li><span>总人数</span>
+									<p>128</p>
+								</li>
+								<li><span>男职员</span>
+									<p>100</p>
+								</li>
+								<li><span>女职员</span>
+									<p>28</p>
+								</li>
+
+							</ul>
+						</div>
+
+					</div>
+				</li>
+				<li style="width: 56%">
+
+					<div class="box">
+						<div class="boxnav mapc" style="height: 550px; position: relative">
+							<div class="mapnav">
+								<ul>
+									<li>
+										<div><span>人口总数</span>
+											<p>1541245</p>
+										</div>
+									</li>
+									<li>
+										<div><span>参保人数</span>
+											<p>1112455</p>
+										</div>
+									</li>
+									<li>
+										<div><span>公积金缴纳人数</span>
+											<p>1110455</p>
+										</div>
+									</li>
+									<!-- 					<li><div><span>数据4</span><p>124</p></div></li>
+					<li><div><span>数据5</span><p>10%</p></div></li> -->
+								</ul>
+							</div>
+							<div class="mapnav2">
+
+								<div class="box">
+									<div class="tit">近一年流动人口数情况</div>
+									<div class="boxnav" style="height: 130px;" id="sysx">
+
+
+									</div>
+									<div class="leidanav leidanav3" style="margin-bottom: 15px;">
+										<ul class="clearfix">
+											<li><span>流入总数</span>
+												<p>128</p>
+											</li>
+											<li><span>流出总数</span>
+												<p>100</p>
+											</li>
+											<li><span>平均每月流入</span>
+												<p>28</p>
+											</li>
+											<li><span>平均每月流出</span>
+												<p>28</p>
+											</li>
+										</ul>
+									</div>
+
+								</div>
+							</div>
+							<div class="map" id="map"></div>
+
+							<script>
+								$(".mapbtn a").hover(function() {
+									var ind = $(this).index()
+									$(".mapnav ul").eq(ind).show().siblings().hide()
+								})
+							</script>
+						</div>
+					</div>
+
+				</li>
+				<li style="width: 22%">
+
+					<div class="box">
+
+
+						<div class="tit">年龄情况分布</div>
+						<div class="boxnav" style="height: 250px;">
+							<div class="" style="height: 190px" id="echart1"></div>
+							<div class="leidanav">
+								<ul class="clearfix">
+									<li><span>20以下</span>
+										<p>25%</p>
+									</li>
+									<li><span>20-30</span>
+										<p>15%</p>
+									</li>
+									<li><span>30-40</span>
+										<p>15%</p>
+									</li>
+									<li><span>40-50</span>
+										<p>10%</p>
+									</li>
+									<li><span>50以上</span>
+										<p>35%</p>
+									</li>
+								</ul>
+							</div>
+						</div>
+
+					</div>
+					<div class="box">
+						<div class="tit">少数民族人口分布</div>
+						<div class="boxnav" style="height: 200px;">
+							<table class="table1" style="top:43px" width="97%" border="0" cellspacing="0" cellpadding="0">
+								<tr>
+									<th style="width: 10%;">序号</th>
+									<th style="width: 20%;">民族</th>
+									<th style="width: 20%;">数量</th>
+									<th style="width: 20%;">占比</th>
+									<th style="width: 20%;">增长率</th>
+								</tr>
+							</table>
+							<div style="position: absolute;overflow: hidden;width: 97%;height:150px;margin-top: 30px;">
+								<table class="table1 table2" width="100%" border="0" cellspacing="0" cellpadding="0">
+									<tbody>
+
+										<tr>
+											<td>其他</td>
+											<td><span class="text-w">10</span></td>
+											<td><span class="text-b">2%</span></td>
+											<td>
+												<div class="text-d">↑12%</div>
+											</td>
+										</tr>
+
+									</tbody>
+								</table>
+							</div>
+						</div>
+
+
+
+
+
+
+					</div>
+
+				</li>
+			</ul>
+
+			<div class="box" style="padding: 20px 0;">
+				<ul class="clearfix nav2 ">
+					<li style="width:25%">
+						<div class="tit01">社会保障情况</div>
+
+						<div class="" style="height:100%;display: flex; align-items: center;">
+							<div style="float: left; width: 50%; height: 100%" class="wancheng">
+								<div><span>已交社保人数</span>
+									<h3>1128023<i>人</i></h3>
+								</div>
+								<div class="yuan">
+									<span>89%</span>
+								</div>
+							</div>
+							<div style="float: left; width: 50%; height: 80%" id="myd1"></div>
+
+
+
+						</div>
+
+					</li>
+					<li style="width:25%">
+						<div class="tit01">参保/失业情况</div>
+						<div class="ftechart" id="echart4"></div>
+					</li>
+					<li style="width:25%">
+
+						<div class="tit01">公积金贷款情况</div>
+						<div class="boxnav" style="height: 250px;">
+							<div style="height: 200px; float: left; width: 40%; padding: 0 5px;">
+								<div class="tit02 text-b">贷款数量</div>
+								<div class="huati">
+									<ul>
+										<li>1.贷款人数<span class="text-s">↑2167</span></li>
+										<li>2.还款金额 <span class="text-s">↑2167</span></li>
+										<li>3.新房贷款 <span class="text-d">↓2167</span></li>
+										<li>4.二手房贷款 <span class="text-d">↓2167</span></li>
+										<!-- <li>5.车贷贷款 <span class="text-d">↓2167</span></li> -->
+									</ul>
+								</div>
+							</div>
+
+							<div style="height: 200px; float: left; width: 60%">
+
+								<div class="text-b tit02" style="text-align: center;">贷款种类</div>
+								<div class="tagcloud">
+									<!-- bo大小 co颜色 -->
+									<!-- <a class="b01 co01" title="33309" >车贷</a> -->
+									<a class="b02 co02" title="33309万元">房贷</a>
+									<a class="b03 co05" title="33309万元">还款额</a>
+									<a class="b04 co02" title="33309万元">贷款额</a>
+									<a class="b03 co05" title="33309人">贷款人数</a>
+								</div>
+								<script type="text/javascript">
+									/*3D标签云*/
+									tagcloud({
+										selector: ".tagcloud", //元素选择器
+										fontsize: 6, //基本字体大小, 单位px
+										radius: 40, //滚动半径, 单位px 页面宽度和高度的五分之一
+										mspeed: "slow", //滚动最大速度, 取值: slow, normal(默认), fast
+										ispeed: "slow", //滚动初速度, 取值: slow, normal(默认), fast
+										direction: 0, //初始滚动方向, 取值角度(顺时针360): 0对应top, 90对应left, 135对应right-bottom(默认)...
+										keep: false //鼠标移出组件后是否继续随鼠标滚动, 取值: false, true(默认) 对应 减速至初速度滚动, 随鼠标滚动
+									});
+								</script>
+							</div>
+						</div>
+					</li>
+					<li style="width:25%">
+						<div class="tit01">性别/学历分布</div>
+						<div class="" id="">
+							<div style="float: left; width: 40%; height: 200px" id="fb03"></div>
+							<div style="float: left; width: 60%; height: 200px" id="fb04"></div>
+
+						</div>
+
+
+
+
+					</li>
+				</ul>
+			</div>
+
+
+		</div>
+	</body>
+</html>
