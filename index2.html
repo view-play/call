@@ -1,0 +1,330 @@
+<!doctype html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<title>景德镇市大数据资源中心</title>
+		<script type="text/javascript" src="js/jquery.js"></script>
+		<script type="text/javascript" src="js/echarts.min.js"></script>
+		<script type="text/javascript" src="js/jingdezheng.js"></script>
+		<script type="text/javascript" src="js/map2.js"></script>
+		<script type="text/javascript" src="js/index2.js"></script>
+		<script type="text/javascript" src="js/Bubble.js"></script>
+		<script type="text/javascript" src="js/scroll_table2.js"></script>
+		<link rel="stylesheet" href="css/style.css">
+	</head>
+	<style>
+		.menu li:nth-child(2)::before, .menu li:nth-child(2) a::before,.menu li:nth-child(2)::after,.menu li:nth-child(2) a::after{
+		  border-color: #dad72e;
+		  opacity: 1;
+	}
+
+.light{
+	    color: #00deff;
+	    text-shadow: 0 0 5px #00deff;
+	    font-family: electronicFont;
+}
+</style>
+	<body>
+		<div class="head clearfix">
+
+
+			<h1 class="pulll_left">景德镇市大数据资源中心</h1>
+			<div class="menu menu2 pulll_left">
+				<ul>
+					<li><a href="index.html">人口库</a></li>
+					<li><a style="color: #f4e925;" href="index2.html">法人库</a></li>
+
+				</ul>
+			</div>
+
+			<div class="time" id="showTime">2018/6/12 17:00:12</div>
+			<script>
+				var t = null;
+				t = setTimeout(time, 1000); //開始运行
+				function time() {
+					clearTimeout(t); //清除定时器
+					dt = new Date();
+					var y = dt.getFullYear();
+					var mt = dt.getMonth() + 1;
+					var day = dt.getDate();
+					var h = dt.getHours(); //获取时
+					var m = dt.getMinutes(); //获取分
+					var s = dt.getSeconds(); //获取秒
+					document.getElementById("showTime").innerHTML = y + "/" + mt + "/" + day + " " + h + ":" + m + ":" + s + "";
+					t = setTimeout(time, 1000); //设定定时器，循环运行     
+				}
+			</script>
+		</div>
+		<div class="mainbox">
+
+			<ul class="clearfix nav1">
+				<li style="width: 22%">
+					<div class="box">
+						<div class="tit">数据来源情况</div>
+						<div class="boxnav" style="height: 250px;">
+							<div class="yqlist">
+								<ul class="clearfix">
+									<li>
+										<div class="yq" id="yq">26</div>
+										<span>来源部门数</span>
+									</li>
+									<li>
+										<div class="yq">567</div>
+										<span>表数量</span>
+									</li>
+									<li>
+										<div class="yq">56345</div>
+										<span>字段数量</span>
+									</li>
+									<li>
+										<div class="yq">7216831</div>
+										<span>数据数量</span>
+									</li>
+								</ul>
+							</div>
+						</div>
+					</div>
+					<div class="box">
+						<div class="tit">法人行业类型分布</div>
+						<div class="boxnav" style="height: 200px;">
+							<table class="table1" style="top:43px" width="97%" border="0" cellspacing="0" cellpadding="0">
+									<tr>
+										<th width="10%">序号</th>
+										<th width="60%">行业名称</th>
+										<th width="20%">个数</th>
+									</tr>
+							</table>
+							<div style="position: absolute;overflow: hidden;width: 97%;height:150px;margin-top: 30px;">
+								<table class="table1 table2" width="100%" border="0" cellspacing="0" cellpadding="0">
+									<tr>
+										<th style="width: 10%;" ></th>
+										<th width="60%"></th>
+										<th width="20%"></th>
+									</tr>
+									<tbody>
+							
+									<tr>
+										<td><span class="text-w">批发和零售业</span></td>
+										<td>
+											<div class="text-d">↑12%</div>
+										</td>
+									</tr>
+							
+									</tbody>
+								</table>
+							</div>
+							
+						</div>
+
+
+					</div>
+				</li>
+				<li style="width: 56%">
+
+					<div class="box">
+						<div class="boxnav mapc" style="height: 550px; position: relative">
+							<div class="mapnav">
+								<ul>
+									<li>
+										<div><span>法人总数</span>
+											<p>1541245</p>
+										</div>
+									</li>
+									<li>
+										<div><span>税收总额（亿）</span>
+											<p>115</p>
+										</div>
+									</li>
+									<li>
+										<div><span>在职人员（万）</span>
+											<p>155</p>
+										</div>
+									</li>
+								</ul>
+							</div>
+							<div class="mapnav2">
+
+								<div class="box">
+									<div class="tit">各区域法人基本情况</div>
+									<div class="boxnav" style="height: 160px;" id="sysx">
+
+
+									</div>
+								</div>
+							</div>
+							<div class="map" id="map"></div>
+
+							<script>
+								$(".mapbtn a").hover(function() {
+									var ind = $(this).index()
+									$(".mapnav ul").eq(ind).show().siblings().hide()
+								})
+							</script>
+						</div>
+					</div>
+
+				</li>
+				<li style="width: 22%">
+
+					<div class="box">
+						<div class="tit">法人机构类型分布</div>
+						<div style="height: 250px;">
+							<div class="" id="">
+								<div style="float: left; width: 100%; height: 185px" id="fb01"></div>
+								<div style="float: left; width: 50%; height: 170px;display: none;" id="fb02"></div>
+
+							</div>
+							<div class="leidanav leidanav2">
+								<ul class="clearfix">
+									<li style="width: 50%;"><span>企业数</span>
+										<p>8128</p>
+									</li>
+									<li style="width: 50%;"><span>个体工商户数</span>
+										<p>21063</p>
+									</li>
+
+								</ul>
+							</div>
+
+						</div>
+
+
+					</div>
+					<div class="box">
+						<div class="tit">法人税收</div>
+						<div class="boxnav" style="height: 205px;">
+							
+							<div class="leidanav leidanav2" style="margin-top: 10px;">
+								<ul class="clearfix">
+									<li style="width: 50%;"><span>实缴法人数</span>
+										<p>2167个</p>
+									</li>
+									<li style="width: 50%;"><span>实缴金额</span>
+										<p>21亿元</p>
+									</li>
+							
+								</ul>
+							</div>
+
+							<div style="height: 150px; float: left; width: 100%">
+								<div class="tagcloud">
+									<!-- bo大小 co颜色 -->
+									<a class="b02 co02" title="2167个">实缴法人</a>
+									<a class="b03 co05" title="21亿元">实缴金额</a>
+								</div>
+								<script type="text/javascript">
+									/*3D标签云*/
+									tagcloud({
+										selector: ".tagcloud", //元素选择器
+										fontsize: 6, //基本字体大小, 单位px
+										radius: 40, //滚动半径, 单位px 页面宽度和高度的五分之一
+										mspeed: "slow", //滚动最大速度, 取值: slow, normal(默认), fast
+										ispeed: "slow", //滚动初速度, 取值: slow, normal(默认), fast
+										direction: 90, //初始滚动方向, 取值角度(顺时针360): 0对应top, 90对应left, 135对应right-bottom(默认)...
+										keep: false //鼠标移出组件后是否继续随鼠标滚动, 取值: false, true(默认) 对应 减速至初速度滚动, 随鼠标滚动
+									});
+								</script>
+							</div>
+						</div>
+					</div>
+
+				</li>
+			</ul>
+
+			<div class="box" style="padding: 20px 0;">
+				<ul class="clearfix nav2 ">
+					<li style="width:25%">
+						<div class="tit01">法人注册资金情况</div>
+						<div class="" style="height:100%;display: flex; align-items: center;">
+							<div style="float: left; width: 50%; height: 100%" class="wancheng">
+								<div><span>500万以上</span>
+									<h3>12835<i>个</i></h3>
+								</div>
+								<div class="yuan">
+									<span>89%</span>
+								</div>
+							</div>
+							<div style="float: left; width: 60%; height: 70%" id="myd1"></div>
+
+
+
+						</div>
+
+					</li>
+					<li style="width:25%">
+						<div class="tit01">法人社保</div>
+						<div class="leidanav leidanav2" style="padding: 8px 0 0;">
+							<ul class="clearfix">
+								<li><span>实缴法人数</span>
+									<p>12809</p>
+								</li>
+								<li><span>法人覆盖率</span>
+									<p>10%</p>
+								</li>
+								<li><span>本月新增法人数</span>
+									<p>28</p>
+								</li>
+
+							</ul>
+						</div>
+						<div class="ftechart" id="echart4" style="height: 78%;"></div>
+
+					</li>
+					<li style="width:25%">
+						<div class="tit01">法人公积金</div>
+						<div class="leidanav leidanav2" style="padding: 8px 0 0;">
+							<ul class="clearfix">
+								<li><span>实缴法人数</span>
+									<p>12809</p>
+								</li>
+								<li><span>公积金覆盖率</span>
+									<p>10%</p>
+								</li>
+								<li><span>本月新增法人数</span>
+									<p>28</p>
+								</li>
+
+							</ul>
+						</div>
+						<div class="boxnav" id="echart3" style="height: 78%;">
+
+						</div>
+
+
+
+					</li>
+					<li style="width:25%">
+						<div class="tit01">法人注销</div>
+
+						<div class="leidanav leidanav2" style="padding: 8px 0 0;">
+							<ul class="clearfix">
+								<li><span>法人注销总数</span>
+									<p>12809</p>
+								</li>
+								<li><span>本月注销法人数</span>
+									<p>10</p>
+								</li>
+								<li><span>本月新增法人数</span>
+									<p>28</p>
+								</li>
+
+							</ul>
+						</div>
+						<div class="boxnav" id="echart10" style="height: 78%;">
+
+						</div>
+
+						<div class="" id="" style="display: none;">
+							<div style="float: left; width: 50%; height: 200px" id="fb03"></div>
+							<div style="float: left; width: 50%; height: 200px" id="fb04"></div>
+
+						</div>
+
+					</li>
+				</ul>
+			</div>
+
+
+		</div>
+	</body>
+</html>
