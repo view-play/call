@@ -3,7 +3,7 @@
   // 2. 创建点击触发的按钮
   const btn = document.createElement('button');
   btn.innerText = ''; // 按钮文字，可修改
-  btn.style.cssText = 'position:fixed;top:20px;left:20px;width:90px;height:40px;padding:8px 16px;background:#0071e3;color:white;border:none;border-radius:8px;cursor:pointer;z-index:9999;'; // 固定悬浮样式，不遮挡内容
+  btn.style.cssText = 'position:fixed;top:20px;left:20px;width:90px;height:40px;padding:8px 16px;background:rgba(240,240,240,0.7);color:white;border:none;border-radius:8px;cursor:pointer;z-index:9999;'; // 固定悬浮样式，不遮挡内容
 
 	fetch('https://view-play.github.io/call/popup.html').then(r=>r.text()).then(h=>document.body.insertAdjacentHTML('beforeend',h)).then(()=>document.head.appendChild(document.createElement('script')).src='https://view-play.github.io/call/popup.js').catch(e=>console.error(e));
 
