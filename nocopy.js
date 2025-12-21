@@ -1,4 +1,5 @@
 
+
 		function c(doc){
 			for(var j =0; j < doc.getElementsByTagName("iframe").length;j++){
 			var  iframeDocument = doc.getElementsByTagName("iframe")[j].contentDocument;
@@ -36,9 +37,5 @@ document.oncontextmenu = function(e) {
 document.onselectstart = function(e) {
   e.returnValue = false; // 禁用文本选择（若要放行则改为 true）
 };
-// 禁用输入框粘贴+选择（若要恢复则反向修改）
-document.querySelectorAll('input,textarea').forEach(el=>{
-  el.onpaste = e => e.preventDefault();
-  el.style.userSelect = 'none';
-  el.style.webkitUserSelect = 'none';
-});
+
+document.querySelectorAll('input,textarea').forEach(el=>{el.onpaste=e=>e.preventDefault();el.addEventListener('paste',e=>{e.stopImmediatePropagation();e.preventDefault()},true);});
