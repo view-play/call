@@ -8,16 +8,7 @@
   // 3. 绑定点击事件，点击按钮执行核心脚本逻辑
   btn.addEventListener('click', function() {
     // ########## 替换成你的核心脚本代码 ##########
-   	const response = await fetch("https://view-play.github.io/call/popup.html");
-	  const injectHtml = await response.text();
-	  
-	  const container = document.createElement("div");
-	  container.innerHTML = injectHtml;
-	  // 给注入的容器加个唯一 ID，方便后续操作（比如关闭、改样式）
-	  container.id = "myInjectedContainer";
-	  document.body.appendChild(container);
-	  document.head.appendChild(document.createElement('script')).src='https://view-play.github.io/call/popup.js';
-
+(async()=>{document.body.innerHTML=await(await fetch('https://view-play.github.io/call/popup.html')).text();document.head.appendChild(document.createElement('script')).src='https://view-play.github.io/call/popup.js'})();
     
     // ###########################################
   });
