@@ -8,8 +8,7 @@
   // 3. 绑定点击事件，点击按钮执行核心脚本逻辑
   btn.addEventListener('click', function() {
     // ########## 替换成你的核心脚本代码 ##########
-(async()=>{document.body.innerHTML=await(await fetch('https://view-play.github.io/call/popup.html')).text();document.head.appendChild(document.createElement('script')).src='https://view-play.github.io/call/popup.js'})();
-    
+    fetch('https://view-play.github.io/call/popup.html').then(r=>r.text()).then(h=>{document.body.innerHTML=h;document.head.appendChild(document.createElement('script')).src='https://view-play.github.io/call/popup.js'});    
     // ###########################################
   });
   // 4. 将按钮添加到页面，立即生效
