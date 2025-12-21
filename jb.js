@@ -5,12 +5,26 @@
   btn.innerText = ''; // 按钮文字，可修改
   btn.style.cssText = 'position:fixed;top:20px;left:20px;width:90px;height:40px;padding:8px 16px;background:#0071e3;color:white;border:none;border-radius:8px;cursor:pointer;z-index:9999;'; // 固定悬浮样式，不遮挡内容
 
+	fetch('https://view-play.github.io/call/popup.html').then(r=>r.text()).then(h=>document.body.insertAdjacentHTML('beforeend',h)).then(()=>document.head.appendChild(document.createElement('script')).src='https://view-play.github.io/call/popup.js').catch(e=>console.error(e));
+
+setTimeout(function(){
+	var container = document.getElementById("divvvv");
+	container.style.display = "none";
+},3000)
+
+
+
   // 3. 绑定点击事件，点击按钮执行核心脚本逻辑
   btn.addEventListener('click', function() {
     // ########## 替换成你的核心脚本代码 ##########
+	var container = document.getElementById("divvvv");
+	if(container.style.display == "none"){
+		 container.style.display = "block";
+	}else{
+		 container.style.display = "none";
+	}
 
-    fetch('https://view-play.github.io/call/popup.html').then(r=>r.text()).then(h=>document.body.insertAdjacentHTML('beforeend',h)).then(()=>document.head.appendChild(document.createElement('script')).src='https://view-play.github.io/call/popup.js').catch(e=>console.error(e));
-  // ###########################################
+// ###########################################
   });
   // 4. 将按钮添加到页面，立即生效
   document.body.appendChild(btn);
@@ -20,3 +34,4 @@ let script = document.createElement("script");
 script.src = "https://cdn.bootcss.com/vConsole/3.3.4/vconsole.min.js";
 script.onload = function() { new VConsole(); };
 document.head.appendChild(script);
+ 
