@@ -292,7 +292,7 @@
 		this.canvas.addEventListener('touchstart', function (e) {
 			var touch = e.targetTouches[0];
 			var point = {
-				x: touch.pageX - 90 || touch.clientX - 90 ,
+				x: touch.pageX - 0 || touch.clientX - 0 ,
 				y: touch.pageY || touch.clientY
 			};
 			console.log(point);
@@ -301,7 +301,7 @@
 		this.canvas.addEventListener('touchend', function (e) {
 			var touch = e.changedTouches[0];
 			var point = {
-				x: touch.pageX - 90,
+				x: touch.pageX - 0,
 				y: touch.pageY
 			};
 			self.writeEnd(point);
@@ -309,7 +309,7 @@
 		this.canvas.addEventListener('touchmove', function (e) {
 			var touch = e.targetTouches[0];
 			var point = {
-				x: touch.pageX - 90,
+				x: touch.pageX - 0,
 				y: touch.pageY
 			};
 			self.writeEnd(point);
@@ -317,7 +317,7 @@
 		this.canvas.addEventListener('touchmove', function (e) {
 			var touch = e.targetTouches[0];
 			var point = {
-				x: touch.pageX - 90,
+				x: touch.pageX - 0,
 				y: touch.pageY
 			};
 			self.writing(point);
