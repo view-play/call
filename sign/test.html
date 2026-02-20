@@ -2,6 +2,7 @@
 <html>
 <head>
 	<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
 	<title>签名板(支持移动端)</title>
 </head>
 <style type="text/css">
@@ -17,6 +18,9 @@
 		border: 0.5px solid black;
 	}
 
+     #canvas{ 
+		  touch-action: none; 
+	 }
 	#clear,
 	#save, #down {
 		margin: 0 auto;
@@ -35,7 +39,7 @@
 </style>
 
 <body data-ext-version="1.4.2">
-	<canvas id="canvas" width="600" height="600" style="border: #666666 solid 1px;">
+	<canvas id="canvas" width="500" height="300" style="border: #666666 solid 1px;">
 		您的浏览器不支持canvas技术,请升级浏览器!
 	</canvas>
 	<div style="text-align: center">
@@ -253,6 +257,7 @@
 				x: e.offsetX || e.clientX,
 				y: e.offsetY || e.clientY
 			};
+			console.log(point);
 			self.writeBegin(point);
 		});
 
@@ -287,15 +292,16 @@
 		this.canvas.addEventListener('touchstart', function (e) {
 			var touch = e.targetTouches[0];
 			var point = {
-				x: touch.pageX || touch.clientX,
+				x: touch.pageX - 90 || touch.clientX - 90 ,
 				y: touch.pageY || touch.clientY
 			};
+			console.log(point);
 			self.writeBegin(point);
 		});
 		this.canvas.addEventListener('touchend', function (e) {
 			var touch = e.changedTouches[0];
 			var point = {
-				x: touch.pageX,
+				x: touch.pageX - 90,
 				y: touch.pageY
 			};
 			self.writeEnd(point);
@@ -303,7 +309,7 @@
 		this.canvas.addEventListener('touchmove', function (e) {
 			var touch = e.targetTouches[0];
 			var point = {
-				x: touch.pageX,
+				x: touch.pageX - 90,
 				y: touch.pageY
 			};
 			self.writeEnd(point);
@@ -311,7 +317,7 @@
 		this.canvas.addEventListener('touchmove', function (e) {
 			var touch = e.targetTouches[0];
 			var point = {
-				x: touch.pageX,
+				x: touch.pageX - 90,
 				y: touch.pageY
 			};
 			self.writing(point);
