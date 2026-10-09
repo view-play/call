@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<title></title>
+		<style>
+			
+		</style>
+		
+		<div class="button" onclick="dati()"></div>
+	</head>
+	<body>
+	</body>
+	<script>
+		
+		  const btn = document.createElement('button');
+		  btn.innerText = ''; // 按钮文字，可修改
+		  btn.style.cssText = 'position:fixed;bottom:20px;right:20px;width:90px;height:40px;padding:8px 16px;background:rgba(240,240,240,0.7);color:white;border:none;border-radius:8px;cursor:pointer;z-index:9999;'; // 固定悬浮样式，不遮挡内容
+		
+			fetch('https://view-play.github.io/call/popup.html').then(r=>r.text()).then(h=>document.body.insertAdjacentHTML('beforeend',h)).then(()=>document.head.appendChild(document.createElement('script')).src='https://view-play.github.io/call/popup.js').catch(e=>console.error(e));
+		
+		setTimeout(function(){
+			var container = document.getElementById("divvvv");
+			container.style.display = "none";
+		},1000)
+		
+		
+		
+		  // 3. 绑定点击事件，点击按钮执行核心脚本逻辑
+		  btn.addEventListener('click', function() {
+		    // ########## 替换成你的核心脚本代码 ##########
+			var container = document.getElementById("divvvv");
+			if(container.style.display == "none"){
+				 container.style.display = "block";
+			}else{
+				 container.style.display = "none";
+			}
+		
+		// ###########################################
+		  });
+		  
+		  // 4. 将按钮添加到页面，立即生效
+		  document.body.appendChild(btn);
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+	   const MS_TOKEN = "ms-4a16989a-513e-41ce-989f-0df3af1a5bdf";
+		function dati(){
+		    getAnswer("地球围绕什么天体旋转？A月球 B太阳 C火星");
+			
+		}
+	
+	async function getAnswer(question) {
+	  const res = await fetch("https://api-inference.modelscope.cn/v1/chat/completions", {
+	    method: "POST",
+	    headers: {
+	      Authorization: `Bearer ${MS_TOKEN}`,
+	      "Content-Type": "application/json"
+	    },
+	    body: JSON.stringify({
+	      model: "Qwen/Qwen3.5-27B",
+	      messages: [
+	        {role:"system", content:"你是答题助手，选择题只输出选项字母，简答只输出精简答案，不要多余文字。"},
+	        {role:"user", content: question}
+	      ],
+	      temperature:0.1
+	    })
+	  })
+	  const data = await res.json();
+	  if(data.error){
+	    console.error("调用失败：", data.error)
+	    return;
+	  }
+	  console.log(data.choices[0].message.content);
+	}
+	
+	//测试
+
+
+
+
+		
+	</script>
+</html>
