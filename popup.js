@@ -1392,4 +1392,4 @@ document.getElementById('show').addEventListener('click', async () => {
 document.getElementById("call").addEventListener("click", call);
 document.getElementById("tiben").addEventListener("change",call);
 document.getElementById("start").addEventListener("blur", callEnd);
-document.getElementById("allcall").addEventListener("click", callEnd);
+document.getElementById("allcall").addEventListener("click", allcall);
