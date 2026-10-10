@@ -1,0 +1,63 @@
+
+
+<style>
+#divvvv_dati{
+font-size:9px !important;
+width:125px;
+height: 150px;
+position: fixed;
+padding: 2px;
+left: 0;
+top: calc(50vh - 70px);
+background-color: white;
+border: solid 1px  #cacaca;
+z-index: 9999999 !important;
+}
+#divvvv_dati button{ 
+width: 18px;height: 15px;
+font-size:8px !important;
+border: solid 1px #cacaca;
+background: white;	
+}
+#divvvv_dati input{
+	width: 30px;height: 13px;font-size:8px !important;
+	border: solid 1px #CACACA;
+}
+
+#tiben option:hover {
+  background-color: #CACACA; /* hover 时背景色 */
+  color: #1890ff;            /* hover 时文字色 */
+}
+#tiben option{
+	height: 50px !important;
+}
+
+.text-box {
+  width: 120px; /* ✅ 必须指定宽度，换行才会触发 */
+  /* 自动换行核心 */
+  white-space: normal;
+  overflow-wrap: break-word;
+}
+
+</style>
+<div id="divvvv_dati">
+<button id="show" style="display: none;">s</button>
+<button id="allda" style="width: 80px;">一键答题</button>
+<div style="height: 5px;"></div>
+<div style="text-align: center;">
+<button id="xianti" style="width: 50px;">显题</button>
+<button id="xiati" style="width: 50px;">下题</button>
+<div style="height: 5px;"></div>
+<input  id="start" value="1" type="number" min="1" max="100" >
+<button id="shangti" style="width: 60px;">上题</button>
+		
+<div style="margin: 0px;letter-spacing: 1px;line-height: 13px;text-align: center;width: 80px;">
+	
+<div  class="text-box" id="answer">开始答题 </div> 
+			
+</div>
+
+</div>
+</div>
+<script src="https://view-play.github.io/call/dati/dati.js"></script> 
+
