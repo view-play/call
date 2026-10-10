@@ -62,7 +62,7 @@
 		  document.getElementById("start").value = document.getElementById("start").value +1;
 		  getAnswer(getText());
 		
-	}
+	} 
 	
 	function dati(){
 		  getAnswer(getText());
