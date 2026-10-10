@@ -1,5 +1,6 @@
-document.getElementById("call").addEventListener("click", call);
-document.getElementById("start").addEventListener("blur", callEnd);
+
+// 恢复右键菜单（允许右键）
+
 // 初始化：记录 body 当前是否显示（默认显示）
 var isBodyVisible = false;
 var dir = 1;
@@ -37,6 +38,8 @@ function extractLetterAndNumber(str) {
         number: match[2] 
     } : null;
 }
+
+
 
 
 function setInputValue(nums,x,y){    //x表示title几 y表示第几行
@@ -219,24 +222,6 @@ if (new Date().getTime() >= explaDate.getTime()) {
 console.log("后台脚本正常执行");
 
 
-document.getElementById('show').addEventListener('click', async () => {
-	// 1. 获取当前活跃的标签页
-	if (document.getElementById("myInjectedContainer")) {
-		document.getElementById("myInjectedContainer").remove();
-		document.removeEventListener("keydown", keydown);
-	}
-	const [tab] = await chrome.tabs.query({
-		active: true,
-		currentWindow: true
-	});
-	document.getElementById('show').style.display = "none";
-	// 2. 给后台发消息，传递“标签页ID”
-	chrome.runtime.sendMessage({
-		type: "INJECT_SCRIPT",
-		tabId: tab.id
-	});
-
-});
 
 var A = [
 	[10546.27, 7825.96, 546.29, 906431.52, 73.41],
@@ -1344,7 +1329,6 @@ function call() {
 		document.getElementById("sum5").innerHTML = sum5.toFixed(2);
 	}, 100);
 	
-
 	console.log(callTi);
 }
 
@@ -1354,4 +1338,58 @@ function callEnd() {
 		end = 100;
 	}
 	document.getElementById("end").value = end;
+	call();
 }
+
+function callzu(j){
+	
+	var str = document.getElementsByClassName("topichtml")[j+1].innerText;
+	const reg = /（\s*([A-Z])：(\d+)-\d+\s*）/;
+	const match = str.match(reg);
+	if(match){
+	  const letter = match[1]; // E
+	  const startPage = match[2]; // 52
+	  console.log(letter, startPage);
+	  for(var i = j*5+1;i < j*5 + 6;i++){ 
+		  document.getElementsByClassName("textCont")[i-1].innerText = callDan(letter,startPage,startPage*1+19,i-j*5);
+		  document.getElementsByClassName("textCont")[i-1].click();
+		  
+	  }
+	}
+	
+	
+}
+
+
+function allcall(){
+	callzu(0);
+	callzu(1);
+	callzu(2);
+	
+}
+
+
+
+document.getElementById('show').addEventListener('click', async () => {
+	// 1. 获取当前活跃的标签页
+	if (document.getElementById("myInjectedContainer")) {
+		document.getElementById("myInjectedContainer").remove();
+		document.removeEventListener("keydown", keydown);
+	}
+	const [tab] = await chrome.tabs.query({
+		active: true,
+		currentWindow: true
+	});
+	document.getElementById('show').style.display = "none";
+	// 2. 给后台发消息，传递“标签页ID”
+	chrome.runtime.sendMessage({
+		type: "INJECT_SCRIPT",
+		tabId: tab.id
+	});
+
+});
+
+document.getElementById("call").addEventListener("click", call);
+document.getElementById("tiben").addEventListener("change",call);
+document.getElementById("start").addEventListener("blur", callEnd);
+document.getElementById("allcall").addEventListener("click", callEnd);
