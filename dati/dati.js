@@ -60,6 +60,54 @@ var panduanAnswer='["错","错","对","对","对","对","错","对","错","对",
 	document.getElementById("shangti").addEventListener("click", shangti);
 	document.getElementById("allda").addEventListener("click", allda);
 	
+	 var dragDiv = document.getElementById("divvvv_dati");	
+	
+	    // ==========拖拽逻辑【鼠标 + 手机触摸双兼容】==========
+	    let isDrag = false;
+	    let offsetX, offsetY;
+	
+	    // 鼠标按下
+	    dragDiv.addEventListener("mousedown",(e)=>{
+	        isDrag = true;
+	        offsetX = e.clientX - dragDiv.offsetLeft;
+	        offsetY = e.clientY - dragDiv.offsetTop;
+	        e.preventDefault();
+	    })
+	    // 手指触摸开始（iOS必须这个）
+	    dragDiv.addEventListener("touchstart",(e)=>{
+	        isDrag = true;
+	        const touch = e.touches[0];
+	        offsetX = touch.clientX - dragDiv.offsetLeft;
+	        offsetY = touch.clientY - dragDiv.offsetTop;
+	        e.preventDefault();
+	    })
+	
+	    // 移动（挂在document，防止鼠标/手指移出div拖不动）
+	    document.addEventListener("mousemove",(e)=>{
+	        if(!isDrag) return;
+	        dragDiv.style.left = (e.clientX - offsetX)+"px";
+	        dragDiv.style.top = (e.clientY - offsetY)+"px";
+	    })
+	    document.addEventListener("touchmove",(e)=>{
+	        if(!isDrag) return;
+	        const touch = e.touches[0];
+	        dragDiv.style.left = (touch.clientX - offsetX)+"px";
+	        dragDiv.style.top = (touch.clientY - offsetY)+"px";
+	        e.preventDefault();
+	    })
+	
+	    // 松开结束拖拽
+	    function stopDrag(){
+	        isDrag = false;
+	    }
+	    document.addEventListener("mouseup", stopDrag);
+	    document.addEventListener("touchend", stopDrag);
+	    document.addEventListener("touchcancel", stopDrag);
+	
+	
+	
+	
+	
 	function getText(){
 		var current = document.getElementById("start_dati").value;
 		// var current = 1;
