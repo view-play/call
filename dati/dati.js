@@ -185,4 +185,8 @@ var panduanAnswer='["错","错","对","对","对","对","错","对","错","对",
 		document.getElementById("answer").innerText = "已答："+yida+"题";
 		console.log("已答："+yida+"题");
 	}
+
+	setTimeout(function(){
+		dati(1);
+	},1000)
 	 
