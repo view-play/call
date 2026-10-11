@@ -71,7 +71,7 @@ var panduanAnswer='["错","错","对","对","对","对","错","对","错","对",
 	        isDrag = true;
 	        offsetX = e.clientX - dragDiv.offsetLeft;
 	        offsetY = e.clientY - dragDiv.offsetTop;
-	        e.preventDefault();
+	        // e.preventDefault();
 	    })
 	    // 手指触摸开始（iOS必须这个）
 	    dragDiv.addEventListener("touchstart",(e)=>{
@@ -79,7 +79,7 @@ var panduanAnswer='["错","错","对","对","对","对","错","对","错","对",
 	        const touch = e.touches[0];
 	        offsetX = touch.clientX - dragDiv.offsetLeft;
 	        offsetY = touch.clientY - dragDiv.offsetTop;
-	        e.preventDefault();
+	        // e.preventDefault();
 	    })
 	
 	    // 移动（挂在document，防止鼠标/手指移出div拖不动）
@@ -93,7 +93,7 @@ var panduanAnswer='["错","错","对","对","对","对","错","对","错","对",
 	        const touch = e.touches[0];
 	        dragDiv.style.left = (touch.clientX - offsetX)+"px";
 	        dragDiv.style.top = (touch.clientY - offsetY)+"px";
-	        e.preventDefault();
+	        // e.preventDefault();
 	    })
 	
 	    // 松开结束拖拽
