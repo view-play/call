@@ -61,7 +61,7 @@ var panduanAnswer='["错","错","对","对","对","对","错","对","错","对",
 	document.getElementById("allda").addEventListener("click", allda);
 	
 	function getText(){
-		var current = document.getElementById("start").value;
+		var current = document.getElementById("start_dati").value;
 		// var current = 1;
 		var title = document.getElementsByClassName("field-label")[current].getElementsByClassName("topichtml")[0].innerText;
 		var text ="问题："+ title +";";
@@ -73,13 +73,13 @@ var panduanAnswer='["错","错","对","对","对","对","错","对","错","对",
 	}
 	
 	function xiati(){
-		  document.getElementById("start").value = document.getElementById("start").value*1 + 1;
-		  var current = document.getElementById("start").value;
+		  document.getElementById("start_dati").value = document.getElementById("start_dati").value*1 + 1;
+		  var current = document.getElementById("start_dati").value;
 		  dati(current);
 	} 
 	function shangti(){
-		 document.getElementById("start").value = document.getElementById("start").value*1 - 1;
-		 var current = document.getElementById("start").value;
+		 document.getElementById("start_dati").value = document.getElementById("start_dati").value*1 - 1;
+		 var current = document.getElementById("start_dati").value;
 		 dati(current);
 	}	
 	
@@ -93,7 +93,6 @@ var panduanAnswer='["错","错","对","对","对","对","错","对","错","对",
 				answer = danxuanAnswer[danxuanTikus.indexOf(title)];
 				for(var i = 0;i<doc.getElementsByClassName("ui-controlgroup")[0].getElementsByClassName("ui-radio").length;i++){
 					if(answer == doc.getElementsByClassName("ui-controlgroup")[0].getElementsByClassName("ui-radio")[i].innerText){
-						
 						doc.getElementsByClassName("ui-controlgroup")[0].getElementsByClassName("ui-radio")[i].click();
 					}
 				} 
@@ -106,7 +105,9 @@ var panduanAnswer='["错","错","对","对","对","对","错","对","错","对",
 				answer = duoxuanAnswer[duoxuanTikus.indexOf(title)];
 				for(var i = 0;i<doc.getElementsByClassName("ui-controlgroup")[0].getElementsByClassName("ui-checkbox").length;i++){
 					if(answer.indexOf(doc.getElementsByClassName("ui-controlgroup")[0].getElementsByClassName("ui-checkbox")[i].innerText)!= -1){
-						doc.getElementsByClassName("ui-controlgroup")[0].getElementsByClassName("ui-checkbox")[i].click();
+						if(!doc.getElementsByClassName("ui-controlgroup")[0].getElementsByClassName("ui-checkbox")[i].classList.contains("checked")){
+							doc.getElementsByClassName("ui-controlgroup")[0].getElementsByClassName("ui-checkbox")[i].click();
+						}
 					} 
 				}
 			}
