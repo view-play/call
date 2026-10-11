@@ -26,10 +26,10 @@ function a(){
     if(el3) el3.style.display="none";
     let el4 = document.getElementById("layui-layer2");
     if(el4) el4.style.display="none";
-}		  
-		  
-		  
-		    
+}	
+	  
+	  
+(function() {
 		  const btn = document.createElement('button');
 		  btn.innerText = ''; // 按钮文字，可修改
 		  btn.style.cssText = 'position:fixed;bottom:80px;right:20px;width:90px;height:40px;padding:8px 16px;background:rgba(240,240,240,0.7);color:white;border:none;border-radius:8px;cursor:pointer;z-index:9999;'; // 固定悬浮样式，不遮挡内容
@@ -58,5 +58,10 @@ function a(){
 		  
 		  // 4. 将按钮添加到页面，立即生效
 		  document.body.appendChild(btn);
+})();
+		  
+		  
+		    
+
 		
 		
