@@ -135,6 +135,7 @@ var panduanAnswer='["错","错","对","对","对","对","错","对","错","对",
 		var doc = document.getElementsByClassName("ui-field-contain")[current];
 		var title = document.getElementsByClassName("field-label")[current].getElementsByClassName("topichtml")[0].innerText;
 		var answer = "未搜到";
+		doc.scrollIntoView();
 		if(current < 81){  
 			if(danxuanTikus.indexOf(title) != -1){ 
 				yida++;
@@ -185,7 +186,6 @@ var panduanAnswer='["错","错","对","对","对","对","错","对","错","对",
 		document.getElementById("answer").innerText = "已答："+yida+"题";
 		console.log("已答："+yida+"题");
 	}
-
 	setTimeout(function(){
 		dati(1);
 	},1000)
