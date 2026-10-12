@@ -136,6 +136,7 @@ var panduanAnswer='["错","错","对","对","对","对","错","对","错","对",
 		var title = document.getElementsByClassName("field-label")[current].getElementsByClassName("topichtml")[0].innerText;
 		var answer = "未搜到";
 		doc.scrollIntoView();
+		window.scrollBy(0, -35);
 		if(current < 81){  
 			if(danxuanTikus.indexOf(title) != -1){ 
 				yida++;
